@@ -1,0 +1,37 @@
+# 你的研究方向关键词（英文，越具体越好）
+keywords:
+  - "FMCW LiDAR"
+  - "fmcw nonlinearity"
+  - "high precision LiDAR"
+  - "phase demodulat* LiDAR"
+
+
+# 要监控的期刊（OpenAlex Source ID）
+# 可通过 https://api.openalex.org/sources?search=nature 查询
+journals:
+  - source_id: "S137974564"   # Nature
+    name: "Nature"
+  - source_id: "S147894088"   # Science
+    name: "Science"
+  - source_id: "S24928054"    # Nature Communications
+    name: "Nature Communications"
+  - source_id: "S243628298"   # Science Advances
+    name: "Science Advances"
+  - source_id: "S120392215"
+    name: "Nature Photonics"
+  - source_id: "S4210197940"
+    name: "Optica"
+  # 按需添加更多，如：
+  # - source_id: "S244536879"  # Nature Methods
+  #   name: "Nature Methods"
+  # - source_id: "S42101690"   # Nature Biotechnology
+  #   name: "Nature Biotechnology"
+
+# 拉取最近多少天的论文
+days_back: 14
+
+# 飞书 Webhook URL（从 GitHub Secrets 读取，此处仅做说明）
+# feishu_webhook: 从环境变量 FEISHU_WEBHOOK 获取
+
+# 智谱 API Key（从 GitHub Secrets 读取）
+# zhipu_api_key: 从环境变量 ZHIPU_API_KEY 获取
