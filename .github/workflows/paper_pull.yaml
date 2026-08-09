@@ -1,0 +1,32 @@
+name: Paper Tracker
+
+on:
+  schedule:
+    # 每周一早上 9:00 (北京时间 = UTC+8，所以 UTC 01:00)
+    # 如果要每两周，改为每两个周一执行
+    - cron: '0 1 * * 1'    # 每周一 UTC 01:00 = 北京时间周一 09:00
+    
+    # 如果你要每两周一次，可以用：
+    # - cron: '0 1 1-7,15-21 * 1'  # 不太精确，建议保持每周，在脚本里判断周数
+  workflow_dispatch:  # 允许手动触发测试
+
+jobs:
+  track-papers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run paper tracker
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+        run: python main.py
