@@ -70,7 +70,7 @@ def reconstruct_abstract(inverted_index):
 def ai_filter(papers, keywords):
     """使用蚂蚁百灵 判断论文是否与研究方向相关"""
     client = OpenAI(
-        api_key=“ZHIPU_API_KEY”,
+        api_key=ZHIPU_API_KEY,
         base_url="https://api.ant-ling.com/v1/"
     )
     
@@ -99,7 +99,7 @@ def ai_filter(papers, keywords):
 
         try:
             response = client.chat.completions.create(
-                model="Ling-2.6-1T",
+                model="Ling-3.0-flash",
                 # model = "Ling-3.0-flash",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
