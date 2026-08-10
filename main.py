@@ -68,10 +68,10 @@ def reconstruct_abstract(inverted_index):
 
 # ============ 2. AI 筛选相关性 ============
 def ai_filter(papers, keywords):
-    """使用智谱 GLM 判断论文是否与研究方向相关"""
+    """使用蚂蚁百灵 判断论文是否与研究方向相关"""
     client = OpenAI(
         api_key=ZHIPU_API_KEY,
-        base_url="https://open.bigmodel.cn/api/paas/v4"
+        base_url="https://api.ant-ling.com/v1/"
     )
     
     relevant_papers = []
@@ -99,7 +99,8 @@ def ai_filter(papers, keywords):
 
         try:
             response = client.chat.completions.create(
-                model="glm-4-flash-250415",
+                model="Ling-2.6-1T",
+                # model = "Ling-3.0-flash",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
                 max_tokens=200,
