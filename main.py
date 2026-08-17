@@ -86,10 +86,11 @@ def ai_filter(papers, keywords):
         
         prompt = f"""你是一个学术论文相关性筛选助手。
 
-我的研究方向关键词：{', '.join(keywords)}
+我的研究方向关键词包括：{', '.join(keywords)}
 
-以下是最近发表的论文列表，请判断每篇是否与我的研究方向【高度相关】。
+以下是搜索到的最近发表的论文列表，请判断每篇是否与我的研究方向【高度相关】。
 仅选择那些主题直接相关或方法/对象高度匹配的论文。不要选择仅边缘提及的。
+例如：我希望标题中出现关键词，或者直接在摘要中说明本文提出了符合关键词描述的系统。而非本文提出的系统可以用于关键词所表示的一些应用场景。
 
 论文列表：
 {paper_list}
@@ -103,7 +104,7 @@ def ai_filter(papers, keywords):
                 # model = "Ling-3.0-flash",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=200,
+                max_tokens=10000,
             )
             result_text = response.choices[0].message.content.strip()
             # 提取 JSON 数组
